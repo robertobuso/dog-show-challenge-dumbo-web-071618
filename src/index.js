@@ -5,7 +5,6 @@ const form = document.getElementById('dog-form')
 document.addEventListener('click', event => {
   if (event.target.classList.contains('dog-btn')) {
     const dogRow = document.querySelector(`[data-row-id='${event.target.dataset.id}']`)
-
     editDog(dogRow)
   }
 })
@@ -13,8 +12,6 @@ document.addEventListener('click', event => {
 fetch('http://localhost:3000/dogs')
 .then(r => r.json())
 .then(dogs => createTable(dogs))
-
-
 
 function createTable(dogs){
   dogs.forEach(dog => {
@@ -51,7 +48,7 @@ function editDog(dog) {
         "Content-Type": "application/json"
       }
     })
-    
+
     dog.innerHTML =
     `
       <td class='center margin'> ${form.children[0].value} </td>
@@ -60,7 +57,5 @@ function editDog(dog) {
       <td class='center margin'> <button data-id='${dog.id}' class='dog-btn center margin'>Edit</button> </td>
     `
   })
-
-
 }
 })
